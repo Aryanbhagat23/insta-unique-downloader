@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Download Instagram Reels, Photos, and DPs for free. Best online Instagram downloader tool.">
+    <meta name="referrer" content="no-referrer" />
+    <title>Insta-Unique | Free Instagram Reels Downloader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Spinner */
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #a855f7; 
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="bg-white text-slate-900 font-sans">
+
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Insta-Unique
+            </div>
+            <div class="hidden md:flex gap-6 text-sm font-medium text-slate-600">
+                <a href="#" class="hover:text-purple-600">Reels</a>
+                <a href="#" class="hover:text-purple-600">Photos</a>
+                <a href="#faq" class="hover:text-purple-600">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-br from-purple-700 to-indigo-900 text-white py-20 text-center relative overflow-hidden">
+        <div class="max-w-3xl mx-auto px-4 relative z-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Download Instagram Reels Online</h1>
+            <p class="text-purple-100 mb-8 text-lg">Save high-quality videos and photos directly to your gallery.</p>
+            
+            <div class="bg-white p-2 rounded-xl shadow-2xl flex flex-col md:flex-row gap-2 text-slate-900">
+                <input id="urlInput" type="text" placeholder="Paste Instagram link here..." 
+                       class="flex-1 p-4 rounded-lg outline-none focus:bg-slate-50">
+                <button onclick="handleFetch()" class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition flex justify-center items-center gap-2">
+                    <span id="btnText">Download</span>
+                    <div id="btnLoader" class="loader hidden"></div>
+                </button>
+            </div>
+
+            <div id="resultCard" class="hidden mt-8 bg-white text-left rounded-xl overflow-hidden shadow-xl max-w-2xl mx-auto">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-1/2 bg-black flex items-center justify-center bg-slate-100">
+                        <img id="mediaPreview" class="hidden max-h-64 object-contain">
+                        <video id="videoPreview" controls class="hidden w-full max-h-64"></video>
+                    </div>
+                    <div class="p-6 md:w-1/2 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-purple-600 uppercase tracking-wider">Ready to Download</span>
+                            <p id="captionText" class="text-slate-500 text-sm mt-2 line-clamp-3 italic">...</p>
+                        </div>
+                        <div class="mt-4 flex flex-col gap-2">
+                            <a id="downloadLink" href="#" target="_blank" download class="block text-center bg-purple-600 text-white py-3 rounded-lg font-bold hover:bg-purple-700">Download File</a>
+                            <button onclick="copyCaption()" class="text-purple-600 font-medium text-sm hover:underline">Copy Caption</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+    </header>
+
+    <section class="max-w-5xl mx-auto px-4 py-16">
+        <h2 class="text-3xl font-bold text-center mb-12 text-slate-800">How to Download Instagram Reels?</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="text-center p-6 border rounded-xl hover:shadow-lg transition">
+                <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">1</div>
+                <h3 class="font-bold text-xl mb-2">Copy the Link</h3>
+                <p class="text-slate-500">Open Instagram, find the video you like, click the (•••) menu and select <strong>Copy Link</strong>.</p>
+            </div>
+            <div class="text-center p-6 border rounded-xl hover:shadow-lg transition">
+                <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">2</div>
+                <h3 class="font-bold text-xl mb-2">Paste the Link</h3>
+                <p class="text-slate-500">Come back to Insta-Unique, paste the link into the input box above and hit <strong>Download</strong>.</p>
+            </div>
+            <div class="text-center p-6 border rounded-xl hover:shadow-lg transition">
+                <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">3</div>
+                <h3 class="font-bold text-xl mb-2">Save File</h3>
+                <p class="text-slate-500">Wait a second for our server to process, then click the Download button to save HD video.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-slate-50 py-16">
+        <div class="max-w-5xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-10 text-slate-800">Why use Insta-Unique?</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="flex gap-4">
+                    <div class="text-3xl">🚀</div>
+                    <div>
+                        <h4 class="font-bold text-lg">Fast & Free</h4>
+                        <p class="text-slate-500 text-sm">No limits on downloads. Our super-fast servers ensure you get your video in seconds.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="text-3xl">🔒</div>
+                    <div>
+                        <h4 class="font-bold text-lg">Secure & Safe</h4>
+                        <p class="text-slate-500 text-sm">No login required. We do not store your data or download history.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="text-3xl">💎</div>
+                    <div>
+                        <h4 class="font-bold text-lg">Original Quality</h4>
+                        <p class="text-slate-500 text-sm">Download Reels in Full HD, 4K, and original quality without watermarks.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="text-3xl">📱</div>
+                    <div>
+                        <h4 class="font-bold text-lg">All Devices</h4>
+                        <p class="text-slate-500 text-sm">Works perfectly on Android, iPhone (iOS), Windows, and MacOS.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="max-w-4xl mx-auto px-4 py-16">
+        <h2 class="text-3xl font-bold text-center mb-10 text-slate-800">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+            <details class="group bg-white border rounded-lg open:ring-2 open:ring-purple-100">
+                <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4">
+                    <span>Is this Instagram Downloader free?</span>
+                    <span class="transition group-open:rotate-180">▼</span>
+                </summary>
+                <div class="text-slate-500 p-4 pt-0">
+                    Yes! Insta-Unique is 100% free to use. You can download as many reels and photos as you want.
+                </div>
+            </details>
+            <details class="group bg-white border rounded-lg open:ring-2 open:ring-purple-100">
+                <summary class="flex justify-between items-center font-medium cursor-pointer list-none p-4">
+                    <span>Do I need to login with my Instagram account?</span>
+                    <span class="transition group-open:rotate-180">▼</span>
+                </summary>
+                <div class="text-slate-500 p-4 pt-0">
+                    No. We prioritize your privacy. You only need the link to the post. No password or login is required.
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-sm">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div>© 2026 Insta-Unique. All rights reserved.</div>
+        <div class="flex gap-6">
+            <a href="/privacy" class="hover:text-white">Privacy Policy</a>
+            <a href="/terms" class="hover:text-white">Terms of Service</a>
+            <a href="/about" class="hover:text-white">About Us</a>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        async function handleFetch() {
+            const urlInput = document.getElementById('urlInput');
+            const card = document.getElementById('resultCard');
+            const btnText = document.getElementById('btnText');
+            const btnLoader = document.getElementById('btnLoader');
+            const imgPreview = document.getElementById('mediaPreview');
+            const videoPreview = document.getElementById('videoPreview');
+
+            if (!urlInput.value) return alert("Please paste a link first!");
+
+            btnText.innerText = "Processing...";
+            btnLoader.classList.remove('hidden');
+            card.classList.add('hidden');
+
+            try {
+                const response = await fetch('/download', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ url: urlInput.value })
+                });
+
+                const data = await response.json();
+
+                if (data.error) {
+                    alert("Error: " + data.error);
+                } else {
+                    document.getElementById('captionText').innerText = data.caption || "No caption.";
+                    document.getElementById('downloadLink').href = data.media_url || data.display_url;
+                    
+                    if (data.is_video) {
+                        imgPreview.classList.add('hidden');
+                        videoPreview.classList.remove('hidden');
+                        videoPreview.src = data.media_url;
+                    } else {
+                        videoPreview.classList.add('hidden');
+                        imgPreview.classList.remove('hidden');
+                        imgPreview.src = data.display_url;
+                    }
+                    card.classList.remove('hidden');
+                }
+            } catch (err) {
+                alert("Server error. Make sure python app.py is running.");
+            } finally {
+                btnText.innerText = "Download";
+                btnLoader.classList.add('hidden');
+            }
+        }
+        function copyCaption() {
+            const text = document.getElementById('captionText').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                 alert("Caption copied!");
+            });
+        }
+    </script>
+</body>
+</html>
